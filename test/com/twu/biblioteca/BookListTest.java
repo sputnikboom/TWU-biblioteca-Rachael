@@ -1,10 +1,12 @@
 package com.twu.biblioteca;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.PrintStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import static org.junit.Assert.*;
 
 import static org.mockito.Mockito.*;
 
