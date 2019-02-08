@@ -24,7 +24,8 @@ public class BookList extends PrintMessage {
 
     public void listBooks(ArrayList<Book> books) {
         for (Book book : books) {
-            print(book);
+            String formattedBook = book.formatBook(book);
+            print(formattedBook);
         }
     }
 }
