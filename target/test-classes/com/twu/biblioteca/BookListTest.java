@@ -3,6 +3,8 @@ package com.twu.biblioteca;
 import org.junit.Test;
 
 import java.io.PrintStream;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import static org.mockito.Mockito.*;
 
@@ -19,7 +21,7 @@ public class BookListTest {
     }
 
     @Test
-    public void shouldPrintSingleBookInList() {
+    public void shouldPrintSingleBookTitleInList() {
         String[] books = {"I'm one of many possible books"};
 
         PrintStream mockPrintStream = mock(PrintStream.class);
@@ -31,7 +33,7 @@ public class BookListTest {
     }
 
     @Test
-    public void shouldPrintMultipleBooks() {
+    public void shouldPrintMultipleBooksTitles() {
         String[] books = {"book 1", "book 2", "book 3"};
 
         PrintStream mockPrintStream = mock(PrintStream.class);
@@ -39,8 +41,34 @@ public class BookListTest {
 
         bookList.listBooks(books);
 
-        verify(mockPrintStream, times(3)).println(any(String.class));
+        verify(mockPrintStream, times(books.length)).println(any(String.class));
     }
 
+    @Test
+    public void shouldPrintBookDetailsOnSingleLine() {
+        ArrayList<Book> books = new ArrayList<Book>();
+        books.add(new Book("book title", "book author", "2000"));
+
+        PrintStream mockPrintStream = mock(PrintStream.class);
+        BookList bookList = new BookList(mockPrintStream);
+
+        bookList.listBooks(books);
+
+        verify(mockPrintStream).println("book title book author 2000");
+    }
+
+    @Test
+    public void shouldPrintMultipleBookDetails() {
+        ArrayList<Book> books = new ArrayList<Book>();
+        books.add(new Book("book title", "book author", "2000"));
+        books.add(new Book("book title 2", "not real", "1980"));
+
+        PrintStream mockPrintStream = mock(PrintStream.class);
+        BookList bookList = new BookList(mockPrintStream);
+
+        bookList.listBooks(books);
+
+        verify(mockPrintStream, times(books.size())).println(any(String.class));
+    }
 
 }

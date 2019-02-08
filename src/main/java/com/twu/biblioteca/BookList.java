@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 public class BookList extends PrintMessage {
 
@@ -18,6 +19,12 @@ public class BookList extends PrintMessage {
     public void listBooks(String[] books) {
         for (String book : books) {
             printBook(book);
+        }
+    }
+
+    public void listBooks(ArrayList<Book> books) {
+        for (Book book : books) {
+            print(book);
         }
     }
 }
