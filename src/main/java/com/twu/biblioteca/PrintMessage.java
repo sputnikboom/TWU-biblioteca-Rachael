@@ -15,8 +15,4 @@ public class PrintMessage {
     public void print(String string) {
         printStream.println(string);
     }
-
-    public void print(Book book) {
-        printStream.println(book.getTitle() + " " + book.getAuthor() + " " + book.getPubYear());
-    }
 }
