@@ -26,19 +26,18 @@ public class BookLoan {
             if (bookChoice == bookId) {
                 if (book.getOnLoan() == false) {
                     book.setOnLoan();
-                    PrintMessage.print(checkoutMessage(true, book));
-                    Menu.printMenu();
+                    PrintMessage.print(checkoutMessage(true));
+                } else {
+                    PrintMessage.print(checkoutMessage(false));
                 }
             }
         }
     }
 
-    public String checkoutMessage(boolean success, Book book) {
-        String message = "";
-        if (success == true) {
-            message = "Thank you! Enjoy the book";
-        }
+
+    public String checkoutMessage(boolean success) {
+        String message = (success == true) ? "Thank you! Enjoy the book" : "Sorry, that book is not available";
         return message;
-    };
+    }
 
 }
