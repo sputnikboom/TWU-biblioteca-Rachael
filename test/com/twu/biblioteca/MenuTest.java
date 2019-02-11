@@ -1,7 +1,10 @@
 package com.twu.biblioteca;
 
+import org.hamcrest.Matcher;
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.mockito.stubbing.Answer;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -18,41 +21,30 @@ public class MenuTest {
     public void shouldPrintMenu() {
         PrintStream mockPrintStream = mock(PrintStream.class);
         Menu menu = new Menu(mockPrintStream);
-
         menu.printMenu();
-
-        verify(mockPrintStream).println("------------------------------------------------");
+        verify(mockPrintStream, times(7)).println(any(String.class));
     }
 
 //    @Test
 //    public void shouldChangeSelection() {
-//        char userInput = '1';
-//        InputStream mockInputStream = mock(InputStream.class);
-//        Menu menu = new Menu(mockInputStream);
-//        assertEquals(userInput, menu.menuSelection);
-//    }
-
-//    @Test
-//    public void shouldPrintMenuSelection() {
-//        char userInput = '1';
-//        PrintStream mockPrintStream = mock(PrintStream.class);
-//        InputStream inputStream = System.in;
+//        char userInput = '0';
 //        ArrayList<Book> books = new ArrayList<Book>();
-//        books.add(new Book("title", "author", "pubYear"));
+//        books.add(new Book("book title", "book author", "2000", 1));
+//        Menu menu = mock(Menu.class);
+//        when(menu.menuInput()).thenReturn('2');
 //
-//        Menu menu = new Menu(mockPrintStream, inputStream, books);
 //        menu.menuSelector(userInput);
-//        verify(mockPrintStream).println("|title               |author              |pubYear                  |");
+//        assertThat(books, (Matcher<? super ArrayList<Book>>) new Book("book title", "book author", "pubYear", 1));
 //    }
-
-    @Test
-    public void shouldAlertWhenInvalidOptionSelected() {
-        char userInput = 'A';
-
-    }
-
-    @Test
-    public void shouldExitProgramme() {
-
-    }
+//
+//    @Test
+//    public void shouldPrintExitMessage() {
+//        char userInput = '0';
+//        ArrayList<Book> books = new ArrayList<Book>();
+//        books.add(new Book("book title", "book author", "2000", 1));
+//        Menu menu = mock(Menu.class);
+//        when(menu.menuInput()).thenReturn('0');
+//
+//        menu.menuSelector(userInput);
+//    }
 }

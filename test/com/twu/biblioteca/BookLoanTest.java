@@ -13,8 +13,10 @@ public class BookLoanTest {
         ArrayList<Book> books = new ArrayList<Book>();
         Book book = new Book ("title", "author", "pubYear", 1);
         books.add(book);
+
         BookLoan bookLoan = new BookLoan(books);
-        bookLoan.checkoutBook('1');
+
+        bookLoan.changeBookStatus(book, "checkout");
         assertTrue(book.getOnLoan());
     }
 
@@ -24,8 +26,8 @@ public class BookLoanTest {
         Book book = new Book ("title", "author", "pubYear", 1);
         books.add(book);
         BookLoan bookLoan = new BookLoan(books);
-        bookLoan.checkoutBook('1');
-        bookLoan.checkoutBook('1');
+        bookLoan.changeBookStatus(book, "checkout");
+        bookLoan.changeBookStatus(book,"checkout");
         assertTrue(book.getOnLoan());
     }
 
@@ -45,9 +47,12 @@ public class BookLoanTest {
         ArrayList<Book> books = new ArrayList<Book>();
         Book book = new Book ("title", "author", "pubYear", 1);
         books.add(book);
+
         BookLoan bookLoan = new BookLoan(books);
-        bookLoan.checkoutBook('1');
-        bookLoan.returnBook('1');
+
+        bookLoan.changeBookStatus(book, "checkout");
+        bookLoan.changeBookStatus(book, "return");
+
         assertFalse(book.getOnLoan());
     }
 
@@ -57,8 +62,10 @@ public class BookLoanTest {
         Book book = new Book ("title", "author", "pubYear", 1);
         books.add(book);
         BookLoan bookLoan = new BookLoan(books);
-        bookLoan.returnBook('1');
-        bookLoan.returnBook('1');
+        bookLoan.changeBookStatus(book, "checkout");
+        bookLoan.changeBookStatus(book, "return");
+        bookLoan.changeBookStatus(book, "return");
+
         assertFalse(book.getOnLoan());
     }
 

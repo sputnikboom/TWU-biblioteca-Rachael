@@ -4,13 +4,15 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
-public class BibliotecaApp {
+public class BibliotecaApp extends PrintMessage {
 
     private static ArrayList<Book> books = new ArrayList<Book>();
     private static PrintGreeting printGreeting = new PrintGreeting();
     private static PrintStream printStream = System.out;
     private static InputStream inputStream = System.in;
-    private static Menu menu = new Menu(printStream, inputStream, books);
+    private static UserInput userInput = new UserInput(inputStream);
+    private static Menu menu = new Menu(printStream, userInput, books, inputStream);
+
 
     public static void main(String[] args) {
         books.add(new Book("the book of books", "mr book", "1969", 1));
@@ -19,5 +21,8 @@ public class BibliotecaApp {
         printGreeting.greet();
 
         menu.printMenu();
+        char inputChar = userInput.charInput();
+        menu.menuSelector(inputChar);
+
     }
 }

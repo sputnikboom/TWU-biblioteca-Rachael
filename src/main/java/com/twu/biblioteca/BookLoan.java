@@ -1,60 +1,67 @@
 package com.twu.biblioteca;
 
-import java.lang.reflect.Array;
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 public class BookLoan {
-    private char bookSelection;
     private ArrayList<Book> books;
+    private UserInput userInput;
 
     public BookLoan(ArrayList<Book> books) {
         this.books = books;
     }
 
+    public BookLoan(ArrayList<Book> books, InputStream inputStream) {
+        this.books = books;
+        this.userInput = new UserInput(inputStream);
+    }
+
     public void loanMenu() {
         PrintMessage.print("Enter the book id you would like to check out:");
-        Scanner userInput = new Scanner(System.in);
-        bookSelection = userInput.next().charAt(0);
+        char bookSelection = userInput.charInput();
         checkoutBook(bookSelection);
     }
 
     public void returnMenu() {
         PrintMessage.print("Enter the book id you would like to return:");
-        Scanner userInput = new Scanner(System.in);
-        bookSelection = userInput.next().charAt(0);
+        char bookSelection = userInput.charInput();
         returnBook(bookSelection);
     }
 
     public void checkoutBook(char bookChoice) {
+        boolean containsBook = false;
         for (Book book : books) {
             char bookId = (char) (book.getBookId() + '0');
             if (bookChoice == bookId) {
-                if (!book.getOnLoan()) {
-                    book.setOnLoan();
-                    PrintMessage.print(checkoutMessage(true));
-                } else {
-                    PrintMessage.print(checkoutMessage(false));
-                }
+                containsBook = true;
+                changeBookStatus(book, "checkout");
+            } else {
+                PrintMessage.print(checkoutMessage(false));
             }
         }
+        if (!containsBook) {
+            PrintMessage.print(returnMessage(false));
+        }
+        launchMenu();
+
     }
 
     public void returnBook(char bookChoice) {
+        boolean containsBook = false;
         for (Book book : books) {
             char bookId = (char) (book.getBookId() + '0');
             if (bookChoice == bookId) {
-                if (book.getOnLoan()) {
-                    book.setOnLoan();
-                    PrintMessage.print(returnMessage(true));
-                } else {
-                    PrintMessage.print(returnMessage(false));
-                }
+                containsBook = true;
+                changeBookStatus(book, "return");
             } else {
                 PrintMessage.print(returnMessage(false));
             }
         }
+        if (!containsBook) {
+            PrintMessage.print(returnMessage(false));
+        }
+        launchMenu();
     }
 
     public String checkoutMessage(boolean success) {
@@ -65,5 +72,25 @@ public class BookLoan {
     public String returnMessage(boolean success) {
         String message = (success == true) ? "Thank you for returning the book" : "This is not a valid book to return";
         return message;
+    }
+
+    public void launchMenu() {
+        Menu.printMenu();
+        char menuChoice = userInput.charInput();
+        Menu.menuSelector(menuChoice);
+    }
+
+    public void changeBookStatus(Book book, String loan) {
+        if (loan.equals("checkout")) {
+            if (!book.getOnLoan()) {
+                book.setOnLoan();
+                PrintMessage.print(returnMessage(true));
+            }
+        } else if (loan.equals("return")) {
+            if (book.getOnLoan()) {
+                book.setOnLoan();
+                PrintMessage.print(checkoutMessage(true));
+            }
+        }
     }
 }

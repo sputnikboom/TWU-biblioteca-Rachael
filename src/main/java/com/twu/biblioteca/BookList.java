@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class BookList extends PrintMessage {
 
     public BookList() {
+
     }
 
     public BookList(PrintStream printStream) {
@@ -24,7 +25,7 @@ public class BookList extends PrintMessage {
 
     public void listBooks(ArrayList<Book> books) {
         for (Book book : books) {
-            if(book.getOnLoan() == false) {
+            if(!book.getOnLoan()) {
                 String formattedBook = book.formatBook(book);
                 print(formattedBook);
             }
