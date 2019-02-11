@@ -56,7 +56,7 @@ public class BookListTest {
 
         bookList.listBooks(books);
 
-        verify(mockPrintStream).println("|0    |book title     |book author    |2000           |");
+        verify(mockPrintStream).println("|1    |book title          |book author         |2000 |");
     }
 
     @Test

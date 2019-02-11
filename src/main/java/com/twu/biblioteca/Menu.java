@@ -39,6 +39,7 @@ public class Menu extends PrintMessage {
     }
 
     public static void menuSelector(char selection) {
+        BookLoan bookLoan = new BookLoan(books);
         switch (selection) {
             case('0'):
                 PrintMessage.print("Goodbye!");
@@ -50,8 +51,10 @@ public class Menu extends PrintMessage {
                 menuInput();
                 break;
             case('2'):
-                BookLoan bookLoan = new BookLoan(books);
                 bookLoan.loanMenu();
+                break;
+            case('3'):
+                bookLoan.returnMenu();
                 break;
             default:
                 print("Please select a valid option");
@@ -66,6 +69,7 @@ public class Menu extends PrintMessage {
         print("0. Exit Programme");
         print("1. View All Books");
         print("2. Checkout Book");
+        print("3. Return Book");
         print("------------------------------------------------");
         menuInput();
     }

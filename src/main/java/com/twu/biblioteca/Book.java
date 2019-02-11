@@ -39,7 +39,7 @@ public class Book {
         bookDetails += (padString(Integer.toString(book.bookId), 5) + "|");
         bookDetails += (padString(book.title, 20) + "|");
         bookDetails += (padString(book.author, 20) + "|");
-        bookDetails += (padString(book.pubYear, 20) + "|");
+        bookDetails += (padString(book.pubYear, 5) + "|");
         return bookDetails;
     }
 

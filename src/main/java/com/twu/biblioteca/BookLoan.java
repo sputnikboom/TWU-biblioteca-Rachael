@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 
 public class BookLoan {
-    public char bookSelection;
-    public ArrayList<Book> books;
+    private char bookSelection;
+    private ArrayList<Book> books;
 
     public BookLoan(ArrayList<Book> books) {
         this.books = books;
@@ -20,11 +20,18 @@ public class BookLoan {
         checkoutBook(bookSelection);
     }
 
+    public void returnMenu() {
+        PrintMessage.print("Enter the book id you would like to return:");
+        Scanner userInput = new Scanner(System.in);
+        bookSelection = userInput.next().charAt(0);
+        returnBook(bookSelection);
+    }
+
     public void checkoutBook(char bookChoice) {
         for (Book book : books) {
             char bookId = (char) (book.getBookId() + '0');
             if (bookChoice == bookId) {
-                if (book.getOnLoan() == false) {
+                if (!book.getOnLoan()) {
                     book.setOnLoan();
                     PrintMessage.print(checkoutMessage(true));
                 } else {
@@ -34,10 +41,29 @@ public class BookLoan {
         }
     }
 
+    public void returnBook(char bookChoice) {
+        for (Book book : books) {
+            char bookId = (char) (book.getBookId() + '0');
+            if (bookChoice == bookId) {
+                if (book.getOnLoan()) {
+                    book.setOnLoan();
+                    PrintMessage.print(returnMessage(true));
+                } else {
+                    PrintMessage.print(returnMessage(false));
+                }
+            } else {
+                PrintMessage.print(returnMessage(false));
+            }
+        }
+    }
 
     public String checkoutMessage(boolean success) {
         String message = (success == true) ? "Thank you! Enjoy the book" : "Sorry, that book is not available";
         return message;
     }
 
+    public String returnMessage(boolean success) {
+        String message = (success == true) ? "Thank you for returning the book" : "This is not a valid book to return";
+        return message;
+    }
 }

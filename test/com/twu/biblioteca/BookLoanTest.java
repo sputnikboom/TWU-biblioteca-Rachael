@@ -40,4 +40,37 @@ public class BookLoanTest {
         assertEquals("Sorry, that book is not available", bookLoan.checkoutMessage(false));
     }
 
+    @Test
+    public void shouldReturnBook() {
+        ArrayList<Book> books = new ArrayList<Book>();
+        Book book = new Book ("title", "author", "pubYear", 1);
+        books.add(book);
+        BookLoan bookLoan = new BookLoan(books);
+        bookLoan.checkoutBook('1');
+        bookLoan.returnBook('1');
+        assertFalse(book.getOnLoan());
+    }
+
+    @Test
+    public void shouldNotChangeLoanStatusIfBookAlreadyReturned() {
+        ArrayList<Book> books = new ArrayList<Book>();
+        Book book = new Book ("title", "author", "pubYear", 1);
+        books.add(book);
+        BookLoan bookLoan = new BookLoan(books);
+        bookLoan.returnBook('1');
+        bookLoan.returnBook('1');
+        assertFalse(book.getOnLoan());
+    }
+
+    @Test
+    public void shouldReturnCorrectReturnMessage() {
+        ArrayList<Book> books = new ArrayList<Book>();
+        Book book = new Book ("title", "author", "pubYear", 1);
+        books.add(book);
+        BookLoan bookLoan = new BookLoan(books);
+
+        assertEquals("Thank you for returning the book", bookLoan.returnMessage(true));
+        assertEquals("This is not a valid book to return", bookLoan.returnMessage(false));
+    }
+
 }
