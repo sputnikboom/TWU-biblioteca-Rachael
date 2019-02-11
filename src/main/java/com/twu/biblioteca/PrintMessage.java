@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 import java.io.PrintStream;
 
 public class PrintMessage {
-    PrintStream printStream = System.out;
+    public static PrintStream printStream = System.out;
 
     public PrintMessage() {
     }
@@ -12,7 +12,7 @@ public class PrintMessage {
         this.printStream = printStream;
     }
 
-    public void print(String string) {
+    public static void print(String string) {
         printStream.println(string);
     }
 }

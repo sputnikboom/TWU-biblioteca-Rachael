@@ -13,8 +13,8 @@ public class BibliotecaApp {
     private static Menu menu = new Menu(printStream, inputStream, books);
 
     public static void main(String[] args) {
-        books.add(new Book("the book of books", "mr book", "1969"));
-        books.add(new Book("another book", "ms book", "2010"));
+        books.add(new Book("the book of books", "mr book", "1969", 1));
+        books.add(new Book("another book", "ms book", "2010", 2));
 
         printGreeting.greet();
 

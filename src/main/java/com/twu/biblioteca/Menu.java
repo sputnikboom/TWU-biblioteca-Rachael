@@ -5,13 +5,12 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Menu {
+public class Menu extends PrintMessage {
 
-    private PrintStream printStream;
-    private InputStream inputStream;
+    private static InputStream inputStream;
 
-    public ArrayList<Book> books;
-    public char menuSelection;
+    public static ArrayList<Book> books;
+    public static char menuSelection;
 
     public Menu() {
     }
@@ -31,7 +30,7 @@ public class Menu {
         this.books = books;
     }
 
-    public void menuInput() {
+    public static void menuInput() {
         Scanner menu = new Scanner(inputStream);
 
         menuSelection = menu.next().charAt(0);
@@ -39,30 +38,35 @@ public class Menu {
         menuSelector(menuSelection);
     }
 
-    public void menuSelector(char selection) {
+    public static void menuSelector(char selection) {
         switch (selection) {
             case('0'):
+                PrintMessage.print("Goodbye!");
                 System.exit(0);
                 break;
-            case ('1'):
+            case('1'):
                 BookList bookList = new BookList();
                 bookList.listBooks(books);
+                menuInput();
+                break;
+            case('2'):
+                BookLoan bookLoan = new BookLoan(books);
+                bookLoan.loanMenu();
                 break;
             default:
-                PrintMessage printMessage = new PrintMessage();
-                printMessage.print("Please select a valid option!");
+                print("Please select a valid option");
                 menuInput();
         }
     }
 
     //TODO: replace breaks with string formatter -> extract into utils??
-    public void printMenu() {
-        PrintMessage printMessage = new PrintMessage(printStream);
-        printMessage.print("-------------------------------------------------");
-        printMessage.print("Please Select An Option:");
-        printMessage.print("0. Exit Programme");
-        printMessage.print("1. View All Books");
-        printMessage.print("------------------------------------------------");
+    public static void printMenu() {
+        print("-------------------------------------------------");
+        print("Please Select An Option:");
+        print("0. Exit Programme");
+        print("1. View All Books");
+        print("2. Checkout Book");
+        print("------------------------------------------------");
         menuInput();
     }
 
