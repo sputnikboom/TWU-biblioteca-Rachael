@@ -13,7 +13,7 @@ public class LoanManagementTest {
     public void shouldReturnCorrectMessageWhenOnLoan() {
         InputStream inputStream = System.in;
         ArrayList<Book> books = new ArrayList<Book>();
-        User user = new User("123-1234", "password");
+        User user = new User("123-1234", "password", "name", "email", "111");
         Book book = new Book ("title", "author", "pubYear", 1);
         books.add(book);
 
@@ -28,7 +28,7 @@ public class LoanManagementTest {
     public void shouldReturnCorrectMessageNotOnLoan() {
         InputStream inputStream = System.in;
         ArrayList<Book> books = new ArrayList<Book>();
-        User user = new User("123-1234", "password");
+        User user = new User("123-1234", "password", "name", "email", "111");
         Book book = new Book ("title", "author", "pubYear", 1);
         books.add(book);
 

@@ -2,7 +2,6 @@ package com.twu.biblioteca;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class BibliotecaApp extends PrintMessage {
@@ -24,8 +23,8 @@ public class BibliotecaApp extends PrintMessage {
         movies.add(new Movie("good movie", "director", "1999", 1, 5));
         movies.add(new Movie("bad movie", "director 2", "2000", 2, 1));
 
-        users.add(new User("123-1234", "password"));
-        users.add(new User("456-4567", "password"));
+        users.add(new User("123-1234", "password", "Mr User", "email@email.com", "111-111-1111"));
+        users.add(new User("456-4567", "password", "Ms User", "email@otheremail.com", "222-222-2222"));
 
         printGreeting.greet();
 

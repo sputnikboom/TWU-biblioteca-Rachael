@@ -32,7 +32,7 @@ public class Menu extends PrintMessage {
         MovieLoan movieLoan = new MovieLoan(movies, inputStream);
         UserVerify userVerify = new UserVerify(users);
         UserInput bookInput = new UserInput(inputStream);
-
+        UserProfile userProfile = new UserProfile(user);
 
         switch (selection) {
             case ('0'):
@@ -45,25 +45,38 @@ public class Menu extends PrintMessage {
                 menuSelector(userInput.charInput());
                 break;
             case ('2'):
-                user = userVerify.logIn(bookInput);
                 if (user != null) {
                     bookLoan.loanMenu(user);
+                } else {
+                    user = userVerify.logIn(bookInput);
+                    menuSelector(selection);
                 }
                 break;
             case ('3'):
-                user = userVerify.logIn(bookInput);
                 if (user != null) {
                     bookLoan.returnMenu();
+                } else {
+                    user = userVerify.logIn(bookInput);
+                    menuSelector(selection);
                 }
                 break;
             case ('4'):
                 MediaList movieList = new MediaList();
                 movieList.listMovies(movies);
                 menuSelector(userInput.charInput());
+                break;
             case ('5'):
                 movieLoan.loanMenu();
                 break;
-            case ('6'):
+            case('6'):
+                if (user != null) {
+                    userProfile.printDetails();
+                } else {
+                    user = userVerify.logIn(bookInput);
+                    menuSelector(selection);
+                }
+                break;
+            case ('7'):
                 LoanManagement loanManagement = new LoanManagement(inputStream, books);
                 loanManagement.managementMenu();
                 break;
@@ -82,8 +95,9 @@ public class Menu extends PrintMessage {
         print("3. Return Book");
         print("4. View all Movies");
         print("5. Checkout Movie");
+        print("6. Check my details");
         print("--- LIBRARY USE ONLY ---");
-        print("6. Check Book Loans");
+        print("7. Check Book Loans");
         print("------------------------------------------------");
     }
 

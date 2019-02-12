@@ -11,8 +11,8 @@ public class UserVerifyTest {
     @Test
     public void shouldValidateValidUserString() {
         ArrayList<User> users = new ArrayList<User>();
-        users.add(new User("123-1234", "password"));
-        users.add(new User("234-2345", "password2"));
+        users.add(new User("123-1234", "password", "name", "email", "111"));
+        users.add(new User("234-2345", "password2", "name", "email", "111"));
 
         UserVerify userVerify = new UserVerify(users);
 
@@ -22,8 +22,8 @@ public class UserVerifyTest {
     @Test
     public void shouldValidateInvalidUserString() {
         ArrayList<User> users = new ArrayList<User>();
-        users.add(new User("123-1234", "password"));
-        users.add(new User("234-2345", "password2"));
+        users.add(new User("123-1234", "password", "name", "email", "111"));
+        users.add(new User("234-2345", "password2", "name", "email", "111"));
 
         UserVerify userVerify = new UserVerify(users);
 
@@ -33,8 +33,8 @@ public class UserVerifyTest {
     @Test
     public void shouldValidateCorrectPassword() {
         ArrayList<User> users = new ArrayList<User>();
-        users.add(new User("123-1234", "password"));
-        users.add(new User("234-2345", "password2"));
+        users.add(new User("123-1234", "password", "name", "email", "111"));
+        users.add(new User("234-2345", "password2", "name", "email", "111"));
 
         UserVerify userVerify = new UserVerify(users);
 
@@ -44,8 +44,8 @@ public class UserVerifyTest {
     @Test
     public void shouldValidateIncorrectPassword() {
         ArrayList<User> users = new ArrayList<User>();
-        users.add(new User("123-1234", "password"));
-        users.add(new User("234-2345", "password2"));
+        users.add(new User("123-1234", "password", "name", "email", "111"));
+        users.add(new User("234-2345", "password2", "name", "email", "111"));
 
         UserVerify userVerify = new UserVerify(users);
 

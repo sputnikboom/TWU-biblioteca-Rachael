@@ -11,7 +11,7 @@ public class BookLoanTest {
     @Test
     public void shouldCheckoutBook() {
         ArrayList<Book> books = new ArrayList<Book>();
-        User user = new User("123-1234", "password");
+        User user = new User("123-1234", "password", "name", "email", "111");
         Book book = new Book ("title", "author", "pubYear", 1);
         books.add(book);
 
@@ -24,7 +24,7 @@ public class BookLoanTest {
     @Test
     public void shouldAddUserUponCheckout() {
         ArrayList<Book> books = new ArrayList<Book>();
-        User user = new User("123-1234", "password");
+        User user = new User("123-1234", "password", "name", "email", "111");
         Book book = new Book ("title", "author", "pubYear", 1);
         books.add(book);
 
@@ -37,7 +37,7 @@ public class BookLoanTest {
     @Test
     public void shouldNotChangeLoanStatusIfBookNotAvailable() {
         ArrayList<Book> books = new ArrayList<Book>();
-        User user = new User("123-1234", "password");
+        User user = new User("123-1234", "password", "name", "email", "111");
         Book book = new Book ("title", "author", "pubYear", 1);
         books.add(book);
         BookLoan bookLoan = new BookLoan(books);
@@ -60,7 +60,7 @@ public class BookLoanTest {
     @Test
     public void shouldReturnBook() {
         ArrayList<Book> books = new ArrayList<Book>();
-        User user = new User("123-1234", "password");
+        User user = new User("123-1234", "password", "name", "email", "111");
         Book book = new Book ("title", "author", "pubYear", 1);
         books.add(book);
 
@@ -75,7 +75,7 @@ public class BookLoanTest {
     @Test
     public void shouldNotChangeLoanStatusIfBookAlreadyReturned() {
         ArrayList<Book> books = new ArrayList<Book>();
-        User user = new User("123-1234", "password");
+        User user = new User("123-1234", "password", "name", "email", "111");
         Book book = new Book ("title", "author", "pubYear", 1);
         books.add(book);
         BookLoan bookLoan = new BookLoan(books);

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class BookLoan {
     private ArrayList<Book> books;
     private UserInput userInput;
-    private User exampleUser = new User("123-1234", "password");
+    private User exampleUser = new User("123-1234", "password", "name", "email", "111");
     public BookLoan(ArrayList<Book> books) {
         this.books = books;
     }
