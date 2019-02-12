@@ -9,11 +9,20 @@ import static org.mockito.Mockito.when;
 public class UserInputTest {
 
     @Test
-    public void shouldReturnUsersInput(){
+    public void shouldReturnUsersInputChar(){
             char charInput = '0';
             UserInput userInput = mock(UserInput.class);
             when(userInput.charInput()).thenReturn('0');
 
             assertEquals(userInput.charInput(), charInput);
+        }
+
+        @Test
+    public void shouldReturnUsersInputString() {
+        String stringInput = "Hello";
+        UserInput userInput = mock(UserInput.class);
+        when(userInput.stringInput()).thenReturn("Hello");
+
+        assertEquals(userInput.stringInput(), stringInput);
         }
     }

@@ -12,4 +12,7 @@ public class User {
     public String getLibraryNumber() {
         return libraryNumber;
     }
+    public String getPassword() {
+        return password;
+    }
 }

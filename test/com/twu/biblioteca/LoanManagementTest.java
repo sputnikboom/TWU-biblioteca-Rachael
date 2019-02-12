@@ -39,5 +39,4 @@ public class LoanManagementTest {
         LoanManagement loanManagement = new LoanManagement(inputStream, books);
         assertEquals(loanManagement.checkBookStatus('1'), "Either the book is not checked out, or an invalid Id was entered");
     }
-
 }

@@ -35,8 +35,11 @@ public class Menu extends PrintMessage{
                 System.exit(0);
                 break;
             case('1'):
-                MediaList bookList = new MediaList();
-                bookList.listBooks(books);
+//                user = UserVerify.logIn(userInput);
+//                if (user != null) {
+                    MediaList bookList = new MediaList();
+                    bookList.listBooks(books);
+//                }
                 menuSelector(userInput.charInput());
                 break;
             case('2'):

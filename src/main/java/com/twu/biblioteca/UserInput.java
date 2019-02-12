@@ -14,4 +14,8 @@ public class UserInput {
     public char charInput() {
         return scanner.next().charAt(0);
     }
+
+    public String stringInput() {
+        return scanner.nextLine();
+    }
 }
