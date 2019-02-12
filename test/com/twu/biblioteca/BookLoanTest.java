@@ -11,23 +11,38 @@ public class BookLoanTest {
     @Test
     public void shouldCheckoutBook() {
         ArrayList<Book> books = new ArrayList<Book>();
+        User user = new User("123-1234", "password");
         Book book = new Book ("title", "author", "pubYear", 1);
         books.add(book);
 
         BookLoan bookLoan = new BookLoan(books);
 
-        bookLoan.changeBookStatus(book, "checkout");
+        bookLoan.changeBookStatus(book, "checkout", user);
         assertTrue(book.getOnLoan());
+    }
+
+    @Test
+    public void shouldAddUserUponCheckout() {
+        ArrayList<Book> books = new ArrayList<Book>();
+        User user = new User("123-1234", "password");
+        Book book = new Book ("title", "author", "pubYear", 1);
+        books.add(book);
+
+        BookLoan bookLoan = new BookLoan(books);
+
+        bookLoan.changeBookStatus(book, "checkout", user);
+        assertTrue(book.getUser().equals(user.getLibraryNumber()));
     }
 
     @Test
     public void shouldNotChangeLoanStatusIfBookNotAvailable() {
         ArrayList<Book> books = new ArrayList<Book>();
+        User user = new User("123-1234", "password");
         Book book = new Book ("title", "author", "pubYear", 1);
         books.add(book);
         BookLoan bookLoan = new BookLoan(books);
-        bookLoan.changeBookStatus(book, "checkout");
-        bookLoan.changeBookStatus(book,"checkout");
+        bookLoan.changeBookStatus(book, "checkout", user);
+        bookLoan.changeBookStatus(book,"checkout", user);
         assertTrue(book.getOnLoan());
     }
 
@@ -45,13 +60,14 @@ public class BookLoanTest {
     @Test
     public void shouldReturnBook() {
         ArrayList<Book> books = new ArrayList<Book>();
+        User user = new User("123-1234", "password");
         Book book = new Book ("title", "author", "pubYear", 1);
         books.add(book);
 
         BookLoan bookLoan = new BookLoan(books);
 
-        bookLoan.changeBookStatus(book, "checkout");
-        bookLoan.changeBookStatus(book, "return");
+        bookLoan.changeBookStatus(book, "checkout", user);
+        bookLoan.changeBookStatus(book, "return", user);
 
         assertFalse(book.getOnLoan());
     }
@@ -59,12 +75,13 @@ public class BookLoanTest {
     @Test
     public void shouldNotChangeLoanStatusIfBookAlreadyReturned() {
         ArrayList<Book> books = new ArrayList<Book>();
+        User user = new User("123-1234", "password");
         Book book = new Book ("title", "author", "pubYear", 1);
         books.add(book);
         BookLoan bookLoan = new BookLoan(books);
-        bookLoan.changeBookStatus(book, "checkout");
-        bookLoan.changeBookStatus(book, "return");
-        bookLoan.changeBookStatus(book, "return");
+        bookLoan.changeBookStatus(book, "checkout", user);
+        bookLoan.changeBookStatus(book, "return", user);
+        bookLoan.changeBookStatus(book, "return", user);
 
         assertFalse(book.getOnLoan());
     }

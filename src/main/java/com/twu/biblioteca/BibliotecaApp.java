@@ -8,11 +8,12 @@ public class BibliotecaApp extends PrintMessage {
 
     private static ArrayList<Book> books = new ArrayList<Book>();
     private static ArrayList<Movie> movies = new ArrayList<Movie>();
+    private static User user = new User("123-1234", "password");
     private static PrintGreeting printGreeting = new PrintGreeting();
     private static PrintStream printStream = System.out;
     private static InputStream inputStream = System.in;
     private static UserInput userInput = new UserInput(inputStream);
-    private static Menu menu = new Menu(printStream, userInput, books, movies, inputStream);
+    private static Menu menu = new Menu(printStream, userInput, books, movies, inputStream, user);
 
 
     public static void main(String[] args) {
