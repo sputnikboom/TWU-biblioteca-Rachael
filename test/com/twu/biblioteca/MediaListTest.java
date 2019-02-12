@@ -100,23 +100,4 @@ public class MediaListTest {
 
         verify(mockPrintStream, times(movies.size())).println(any(String.class));
     }
-
-//    @Test
-//    public void shouldOnlyListAvailableBooks() {
-//        ArrayList<Book> books = new ArrayList<Book>();
-//        books.add(new Book("book 1", "author 1", "2000", 1));
-//        books.add(new Book("book 2", "author 2", "2000", 2));
-//
-//        PrintStream mockPrintStream = mock(PrintStream.class);
-//        InputStream inputStream = System.in;
-//
-//        BookLoan bookLoan = new BookLoan(books, inputStream);
-//        bookLoan.checkoutBook('1');
-//
-//        BookList bookList = new BookList(mockPrintStream);
-//        bookList.listBooks(books);
-//
-//        verify(mockPrintStream, times(1)).println(any(String.class));
-//    }
-
 }
