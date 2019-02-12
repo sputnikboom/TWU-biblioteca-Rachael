@@ -1,18 +1,20 @@
 package com.twu.biblioteca;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class UserVerify {
     private ArrayList<User> users;
     private String libraryNumber = null;
     private String password = null;
-    private User user;
+    private User user = null;
+    private InputStream inputStream;
 
     public UserVerify(ArrayList<User> users) {
         this.users = users;
     }
 
-    public void logIn(UserInput userInput) {
+    public User logIn(UserInput userInput) {
         PrintMessage.print("Please enter your library number:");
         libraryNumber = userInput.stringInput();
         user = validUser(libraryNumber);
@@ -25,13 +27,10 @@ public class UserVerify {
             } else {
                 PrintMessage.print("Invalid Password");
             }
-        } else {
-            PrintMessage.print("Invalid library number");
         }
-
+        return user;
     }
 
-    ;
 
     public User validUser(String string) {
         User validUser = null;

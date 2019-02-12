@@ -5,57 +5,65 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Menu extends PrintMessage{
+public class Menu extends PrintMessage {
 
     public static UserInput userInput;
     public static ArrayList<Book> books;
     public static ArrayList<Movie> movies;
     public static InputStream inputStream;
+    public static ArrayList<User> users;
     public static User user;
 
     public Menu(PrintStream printStream) {
         this.printStream = printStream;
     }
 
-    public Menu(PrintStream printStream, UserInput userInput, ArrayList<Book> books, ArrayList<Movie> movies, InputStream inputStream, User user) {
+    public Menu(PrintStream printStream, UserInput userInput, ArrayList<Book> books, ArrayList<Movie> movies, InputStream inputStream, ArrayList<User> users) {
         super(printStream);
         this.userInput = userInput;
         this.books = books;
         this.movies = movies;
         this.inputStream = inputStream;
-        this.user = user;
+        this.users = users;
     }
 
     public static void menuSelector(char selection) {
         BookLoan bookLoan = new BookLoan(books, inputStream);
         MovieLoan movieLoan = new MovieLoan(movies, inputStream);
+        UserVerify userVerify = new UserVerify(users);
+        UserInput bookInput = new UserInput(inputStream);
+
+
         switch (selection) {
-            case('0'):
+            case ('0'):
                 print("Goodbye!");
                 System.exit(0);
                 break;
-            case('1'):
-//                user = UserVerify.logIn(userInput);
-//                if (user != null) {
-                    MediaList bookList = new MediaList();
-                    bookList.listBooks(books);
-//                }
+            case ('1'):
+                MediaList bookList = new MediaList();
+                bookList.listBooks(books);
                 menuSelector(userInput.charInput());
                 break;
-            case('2'):
-                bookLoan.loanMenu(user);
+            case ('2'):
+                user = userVerify.logIn(bookInput);
+                if (user != null) {
+                    bookLoan.loanMenu(user);
+                }
                 break;
-            case('3'):
-                bookLoan.returnMenu();
+            case ('3'):
+                user = userVerify.logIn(bookInput);
+                if (user != null) {
+                    bookLoan.returnMenu();
+                }
                 break;
-            case('4'):
+            case ('4'):
                 MediaList movieList = new MediaList();
                 movieList.listMovies(movies);
                 menuSelector(userInput.charInput());
-            case('5'):
+            case ('5'):
                 movieLoan.loanMenu();
                 break;
-            case('6'):
+            case ('6'):
                 LoanManagement loanManagement = new LoanManagement(inputStream, books);
                 loanManagement.managementMenu();
                 break;
