@@ -34,7 +34,7 @@ public class Book {
         this.onLoan = !this.onLoan;
     }
 
-    public String formatBook(Book book) {
+    public String format(Book book) {
         String bookDetails = "|";
         bookDetails += (padString(Integer.toString(book.bookId), 5) + "|");
         bookDetails += (padString(book.title, 20) + "|");

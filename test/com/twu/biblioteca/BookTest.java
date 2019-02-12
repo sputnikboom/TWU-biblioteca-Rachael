@@ -17,7 +17,7 @@ public class BookTest {
     @Test
     public void shouldFormatBookDetails() {
         Book sampleBook = new Book("book title", "book author", "2000", 1);
-        String bookDetails = sampleBook.formatBook(sampleBook);
+        String bookDetails = sampleBook.format(sampleBook);
         assertEquals(55, bookDetails.length());
     }
 

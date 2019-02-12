@@ -37,7 +37,7 @@ public class Movie {
             this.onLoan = !this.onLoan;
         }
 
-        public String formatMovie(Movie movie) {
+        public String format(Movie movie) {
             String movieString = "|";
             movieString += (padString(Integer.toString(movie.movieId), 5) + "|");
             movieString += (padString(movie.title, 15) + "|");

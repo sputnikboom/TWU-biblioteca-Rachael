@@ -22,7 +22,7 @@ public class MenuTest {
         PrintStream mockPrintStream = mock(PrintStream.class);
         Menu menu = new Menu(mockPrintStream);
         menu.printMenu();
-        verify(mockPrintStream, times(7)).println(any(String.class));
+        verify(mockPrintStream, times(8)).println(any(String.class));
     }
 
 //    @Test
