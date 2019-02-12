@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class BookLoan {
     private ArrayList<Book> books;
     private UserInput userInput;
-
+    private User exampleUser = new User("123-1234", "password", "name", "email", "111");
     public BookLoan(ArrayList<Book> books) {
         this.books = books;
     }
@@ -17,10 +17,10 @@ public class BookLoan {
         this.userInput = new UserInput(inputStream);
     }
 
-    public void loanMenu() {
+    public void loanMenu(User user) {
         PrintMessage.print("Enter the book id you would like to check out:");
         char bookSelection = userInput.charInput();
-        checkoutBook(bookSelection);
+        checkoutBook(bookSelection, user);
     }
 
     public void returnMenu() {
@@ -29,13 +29,13 @@ public class BookLoan {
         returnBook(bookSelection);
     }
 
-    public void checkoutBook(char bookChoice) {
+    public void checkoutBook(char bookChoice, User user) {
         boolean containsBook = false;
         for (Book book : books) {
             char bookId = (char) (book.getBookId() + '0');
             if (bookChoice == bookId) {
                 containsBook = true;
-                changeBookStatus(book, "checkout");
+                changeBookStatus(book, "checkout", user);
             } else {
                 PrintMessage.print(checkoutMessage(false));
             }
@@ -53,7 +53,7 @@ public class BookLoan {
             char bookId = (char) (book.getBookId() + '0');
             if (bookChoice == bookId) {
                 containsBook = true;
-                changeBookStatus(book, "return");
+                changeBookStatus(book, "return", exampleUser);
             } else {
                 PrintMessage.print(returnMessage(false));
             }
@@ -80,15 +80,17 @@ public class BookLoan {
         Menu.menuSelector(menuChoice);
     }
 
-    public void changeBookStatus(Book book, String loan) {
+    public void changeBookStatus(Book book, String loan, User user) {
         if (loan.equals("checkout")) {
             if (!book.getOnLoan()) {
                 book.setOnLoan();
+                book.setUserId(user.getLibraryNumber());
                 PrintMessage.print(returnMessage(true));
             }
         } else if (loan.equals("return")) {
             if (book.getOnLoan()) {
                 book.setOnLoan();
+                book.setUserId(null);
                 PrintMessage.print(checkoutMessage(true));
             }
         }

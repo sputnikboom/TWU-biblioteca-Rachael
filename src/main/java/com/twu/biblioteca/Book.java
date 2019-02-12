@@ -6,6 +6,7 @@ public class Book {
     private String pubYear;
     private boolean onLoan = false;
     private int bookId;
+    private String userId = null;
 
     public Book(String title, String author, String pubYear, int bookId) {
         this.title = title;
@@ -29,12 +30,18 @@ public class Book {
     public boolean getOnLoan() {
         return onLoan;
     }
+    public String getUser() {
+        return userId;
+    }
 
     public void setOnLoan() {
         this.onLoan = !this.onLoan;
     }
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-    public String formatBook(Book book) {
+    public String format(Book book) {
         String bookDetails = "|";
         bookDetails += (padString(Integer.toString(book.bookId), 5) + "|");
         bookDetails += (padString(book.title, 20) + "|");
